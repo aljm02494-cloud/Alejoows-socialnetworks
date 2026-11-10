@@ -1,1001 +1,1973 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>alejoows // GRUNGE</title>
-<meta name="theme-color" content="#120c07">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>alejoows</title>
+<meta name="theme-color" content="#000000">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="alejoows — Redes sociales y música.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M19,2 L45,2 C57,2 62,7 62,19 L62,45 C62,57 57,62 45,62 L19,62 C7,62 2,57 2,45 L2,19 C2,7 7,2 19,2 Z' fill='%2318181B' stroke='rgba(255,255,255,0.18)' stroke-width='2'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='-apple-system,BlinkMacSystemFont,sans-serif' font-size='28' font-weight='600' fill='%23F5F5F7'%3Ea%3C/text%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 /* ============================================================
-   ALEJOOWS — DARK GRUNGE / PIXEL EDITION
+   ALEJOOWS — iOS 26 DARK / EMO MINIMALIST EDITION
    ============================================================ */
-:root{
-  --bg-0:#0d0906;
-  --bg-1:#17100a;
-  --panel:#1d150e;
-  --panel-2:#251a11;
-  --edge:#3d2c1c;
-  --edge-hi:#6b4c2c;
-  --text:#e8d6b8;
-  --dim:#a08a6c;
-  --faint:#6d5a43;
-  --amber:#ff9d2e;
-  --rust:#c0432a;
-  --blood:#e0341f;
-  --toxic:#b6ff2e;
-  --px:2px;
+:root {
+  --bg-canvas: #000000;
+  --glass-bg: rgba(24, 24, 27, 0.72);
+  --glass-bg-elevated: rgba(34, 34, 38, 0.78);
+
+  --label-primary: #F5F5F7;
+  --label-secondary: rgba(235, 235, 245, 0.56);
+  --label-tertiary: rgba(235, 235, 245, 0.34);
+
+  --radius-xl: 28px;
+  --radius-lg: 20px;
+
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-chicle: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  padding:48px 18px 70px;
-  background:var(--bg-0);
-  color:var(--text);
-  font-family:'Share Tech Mono',ui-monospace,Menlo,Consolas,monospace;
-  display:flex;justify-content:center;align-items:flex-start;
-  overflow-x:hidden;
-  -webkit-font-smoothing:none;
-  text-rendering:geometricPrecision;
+*, *::before, *::after {
+  box-sizing: border-box;
 }
-img,svg{display:block}
-::selection{background:var(--blood);color:#120c07}
 
-/* ---------- FONDO: foto oscurecida + tinte marrón ---------- */
-.bg-photo{
-  position:fixed;inset:-30px;z-index:-6;
-  background:url('https://i.postimg.cc/sDtHKcYh/9861649720f868c14c22dc3fcf648058.jpg') center/cover no-repeat;
-  filter:blur(9px) brightness(.28) contrast(1.35) saturate(.22) sepia(.55);
-  transform:scale(1.08);
-  animation:bgdrift 40s steps(24,end) infinite alternate;
+html {
+  height: 100%;
+  background: var(--bg-canvas);
+  color-scheme: dark;
 }
-@keyframes bgdrift{from{transform:scale(1.08) translate(0,0)}to{transform:scale(1.16) translate(-14px,10px)}}
 
-.bg-wash{
-  position:fixed;inset:0;z-index:-5;pointer-events:none;
+body {
+  margin: 0;
+  min-height: 100dvh;
+  padding: clamp(24px, 5vh, 52px) clamp(16px, 4vw, 32px) clamp(24px, 5vh, 44px);
+  background: radial-gradient(100% 80% at 50% 0%, #0D0D0F 0%, #030304 62%, #000000 100%);
+  color: var(--label-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+img, svg {
+  display: block;
+}
+
+::selection {
+  background: rgba(255, 255, 255, 0.22);
+  color: #FFFFFF;
+}
+
+/* ---------- iOS 26 SMOKED LIQUID GLASS ---------- */
+.glass {
+  position: relative;
+  background: var(--glass-bg);
+  backdrop-filter: blur(36px) saturate(160%);
+  -webkit-backdrop-filter: blur(36px) saturate(160%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.03),
+    0 22px 52px -22px rgba(0, 0, 0, 0.88);
+}
+
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 255, 255, 0.06) 36%,
+    rgba(255, 255, 255, 0.025) 70%,
+    rgba(255, 255, 255, 0.12) 100%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* ---------- ENTRANCE ---------- */
+.reveal {
+  animation: fadeSlide 0.55s var(--ease-spring) both;
+}
+.reveal-1 { animation-delay: 0.02s; }
+.reveal-2 { animation-delay: 0.08s; }
+.reveal-3 { animation-delay: 0.14s; }
+.reveal-4 { animation-delay: 0.2s; }
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- MAIN STAGE & STRATEGIC GRID ---------- */
+.stage {
+  width: 100%;
+  max-width: 868px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.bento {
+  display: grid;
+  grid-template-columns: minmax(308px, 362px) minmax(0, 1fr);
+  grid-template-rows: auto auto 1fr;
+  gap: 16px 22px;
+  align-items: stretch;
+  grid-template-areas:
+    "profile pill"
+    "profile player"
+    "socials player";
+}
+
+/* ---------- DYNAMIC ISLAND AL COSTADO DERECHO DEL PERFIL ---------- */
+.pill-bar {
+  grid-area: pill;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 48px;
+  padding: 4px 0;
+}
+
+.dynamic-pill {
+  position: relative;
+  border: 0;
+  padding: 0;
+  border-radius: 9999px;
+  width: 112px;
+  height: 32px;
+  color: var(--label-primary);
+  font-family: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: rgba(14, 14, 16, 0.92);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.13),
+    0 14px 32px -10px rgba(0, 0, 0, 0.9);
+  transition:
+    width 0.62s var(--ease-chicle),
+    height 0.56s var(--ease-chicle),
+    padding 0.5s var(--ease-spring),
+    transform 0.42s var(--ease-chicle),
+    background 0.3s ease;
+}
+
+.dynamic-pill:hover {
+  transform: scale(1.04);
+  background: rgba(24, 24, 28, 0.95);
+}
+
+.dynamic-pill:active {
+  transform: scale(0.92);
+  transition-duration: 0.15s;
+}
+
+.dynamic-pill:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.4);
+}
+
+.dynamic-pill.is-playing {
+  width: 286px;
+  max-width: 100%;
+  height: 46px;
+  padding: 7px 14px 7px 9px;
+  justify-content: flex-start;
+  gap: 10px;
+  background: rgba(20, 20, 23, 0.9);
+}
+
+.pill-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+  opacity: 0;
+  transform: scale(0.86);
+  pointer-events: none;
+  transition:
+    opacity 0.24s ease,
+    transform 0.52s var(--ease-chicle);
+}
+
+.dynamic-pill:not(.is-playing) .pill-content {
+  position: absolute;
+  inset: 0;
+}
+
+.dynamic-pill.is-playing .pill-content {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: 0.08s;
+}
+
+.pill-thumb {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  background: #1C1C1F;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.pill-note {
+  width: 12px;
+  height: 12px;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.pill-thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.2) brightness(0.9);
+}
+
+.pill-text {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.pill-title {
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--label-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pill-sub {
+  font-size: 0.65rem;
+  color: var(--label-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pill-eq {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.pill-eq i {
+  display: block;
+  width: 2.2px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--label-primary);
+  transition: height 55ms linear;
+}
+
+/* ---------- PROFILE CARD (RECORTADO EN ALTURA PARA EQUILIBRIO) ---------- */
+.profile-card {
+  grid-area: profile;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.poster-band {
+  position: relative;
+  flex: 1;
+  min-height: 58px;
+  overflow: hidden;
+  background: #121214;
+}
+
+.poster-blur {
+  position: absolute;
+  inset: -24px;
+  background-size: cover;
+  background-position: center;
+  filter: blur(22px) grayscale(0.85) contrast(1.18) brightness(0.42);
+  transform: scale(1.25);
+}
+
+.poster-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(14, 14, 16, 0.1) 0%, rgba(22, 22, 25, 0.96) 100%);
+}
+
+.profile-main {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+  padding: 0 22px 20px;
+  margin-top: -36px;
+}
+
+.profile-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 15px;
+}
+
+.avatar-squircle {
+  position: relative;
+  width: 78px;
+  height: 78px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #18181B;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.68);
+  display: grid;
+  place-items: center;
+}
+
+.avatar-fallback {
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  color: rgba(245, 245, 247, 0.42);
+  user-select: none;
+}
+
+.avatar-squircle img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-text {
+  min-width: 0;
+  padding-bottom: 8px;
+}
+
+.profile-name {
+  margin: 0;
+  font-size: 1.55rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--label-primary);
+}
+
+/* ---------- SOCIAL LINKS ---------- */
+.socials-section {
+  grid-area: socials;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-label {
+  margin: 0 0 10px 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--label-tertiary);
+}
+
+.links-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.social-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 17px;
+  text-decoration: none;
+  color: var(--label-primary);
+  border-radius: var(--radius-lg);
+  transition:
+    transform 0.35s var(--ease-spring),
+    background 0.22s ease;
+}
+
+.social-card:hover {
+  transform: translateY(-2px);
+  background: var(--glass-bg-elevated);
+}
+
+.social-card:active {
+  transform: scale(0.985);
+  transition-duration: 0.1s;
+}
+
+.social-card:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.38);
+}
+
+.ios-icon {
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  transition: transform 0.35s var(--ease-spring);
+}
+
+.ios-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.social-card:hover .ios-icon {
+  transform: scale(1.04);
+}
+
+.social-meta {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.social-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--label-primary);
+}
+
+.social-sub {
+  font-size: 0.8rem;
+  color: var(--label-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.social-arrow {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--label-tertiary);
+  transition: transform 0.32s var(--ease-spring), color 0.2s ease, background 0.2s ease;
+}
+
+.social-arrow svg {
+  width: 15px;
+  height: 15px;
+}
+
+.social-card:hover .social-arrow {
+  color: var(--label-primary);
+  background: rgba(255, 255, 255, 0.08);
+  transform: translate(2px, -2px);
+}
+
+/* ---------- MUSIC PLAYER ---------- */
+.player-card {
+  grid-area: player;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.player-ambient {
+  position: absolute;
+  inset: -48px;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  filter: blur(66px) grayscale(1) contrast(1.2) brightness(0.28);
+  opacity: 0.34;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.player-card.is-playing .player-ambient {
+  opacity: 0.52;
+}
+
+.player-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* NOW PLAYING + EMO-DARK VINYL + B&W COVERS */
+.now-playing {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.cover-stage {
+  position: relative;
+  width: 106px;
+  height: 78px;
+  flex-shrink: 0;
+}
+
+.vinyl-wrap {
+  position: absolute;
+  top: 4px;
+  left: 16px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  transform: translateX(0) scale(0.95);
+  transition: transform 0.65s var(--ease-spring);
+  pointer-events: none;
+}
+
+.player-card.is-playing .vinyl-wrap {
+  transform: translateX(20px) scale(1);
+}
+
+.vinyl-disc {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
   background:
-    radial-gradient(115% 75% at 50% -12%, rgba(196,110,38,.20), transparent 58%),
-    radial-gradient(95% 70% at 12% 110%, rgba(120,38,20,.24), transparent 62%),
-    radial-gradient(95% 70% at 90% 100%, rgba(58,36,18,.30), transparent 62%),
-    linear-gradient(180deg,#140d07 0%,#1e140c 42%,#0f0a06 100%);
-  mix-blend-mode:normal;
+    radial-gradient(circle, #060607 0 11%, rgba(255, 255, 255, 0.16) 11.5% 13%, transparent 13.5%),
+    repeating-radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.055) 0 1px,
+      rgba(9, 9, 11, 0.98) 1.5px 4px
+    );
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    inset 0 0 12px rgba(0, 0, 0, 0.9),
+    0 10px 24px rgba(0, 0, 0, 0.85);
+  display: grid;
+  place-items: center;
+  animation: vinylSpin 7.5s linear infinite;
+  animation-play-state: paused;
 }
 
-/* manchas de suciedad (blobs marrones) */
-.bg-stains{
-  position:fixed;inset:-10%;z-index:-4;pointer-events:none;opacity:.55;
-  mix-blend-mode:multiply;
+.player-card.is-playing .vinyl-disc {
+  animation-play-state: running;
+}
+
+@keyframes vinylSpin {
+  to { transform: rotate(360deg); }
+}
+
+.vinyl-label {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #1b1b1e;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.vinyl-label img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.25) brightness(0.75);
+}
+
+.vinyl-spindle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #070709;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.vinyl-sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 35deg,
+    transparent 0deg 35deg,
+    rgba(255, 255, 255, 0.11) 62deg,
+    transparent 92deg 215deg,
+    rgba(255, 255, 255, 0.08) 242deg,
+    transparent 272deg 360deg
+  );
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.cover-box {
+  position: relative;
+  z-index: 2;
+  width: 78px;
+  height: 78px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #151518;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.68);
+  display: grid;
+  place-items: center;
+  transform: scale(0.96);
+  transition: transform 0.55s var(--ease-spring), box-shadow 0.55s ease;
+}
+
+.player-card.is-playing .cover-box {
+  transform: scale(1);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.82);
+}
+
+.cover-box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
   background:
-    radial-gradient(circle at 12% 18%, rgba(20,11,5,.85) 0 6%, transparent 7%),
-    radial-gradient(circle at 84% 12%, rgba(24,13,6,.75) 0 9%, transparent 10%),
-    radial-gradient(circle at 70% 78%, rgba(16,9,4,.85) 0 11%, transparent 12%),
-    radial-gradient(circle at 25% 88%, rgba(22,12,5,.8) 0 8%, transparent 9%),
-    radial-gradient(circle at 48% 46%, rgba(12,7,3,.55) 0 20%, transparent 22%);
-  filter:blur(14px);
+    radial-gradient(circle at 50% 45%, transparent 45%, rgba(0, 0, 0, 0.56) 100%),
+    linear-gradient(150deg, rgba(255, 255, 255, 0.09) 0%, transparent 42%, rgba(0, 0, 0, 0.28) 100%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  z-index: 2;
 }
 
-/* ---------- RUIDO / GRANO ANIMADO (pixelado) ---------- */
-.grain{
-  position:fixed;inset:-160px;z-index:60;pointer-events:none;
-  opacity:.14;mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
-  animation:grainshift .5s steps(1,end) infinite;
-}
-@keyframes grainshift{
-  0%{transform:translate(0,0)}20%{transform:translate(-9px,5px)}
-  40%{transform:translate(7px,-11px)}60%{transform:translate(-12px,-6px)}
-  80%{transform:translate(10px,9px)}100%{transform:translate(0,0)}
+.cover-fallback {
+  width: 24px;
+  height: 24px;
+  color: rgba(255, 255, 255, 0.22);
 }
 
-/* ---------- SCANLINES + REJILLA PIXEL + VIÑETA ---------- */
-.scanlines{
-  position:fixed;inset:0;z-index:61;pointer-events:none;opacity:.5;
-  background:repeating-linear-gradient(180deg,rgba(0,0,0,.42) 0 1px,rgba(0,0,0,0) 1px 3px);
-}
-.crt-bar{
-  position:fixed;left:0;right:0;height:130px;z-index:62;pointer-events:none;
-  background:linear-gradient(180deg,transparent,rgba(255,178,90,.055) 40%,rgba(255,214,160,.09) 50%,transparent);
-  animation:crtroll 7.5s linear infinite;
-}
-@keyframes crtroll{from{top:-140px}to{top:100%}}
-.pixelgrid{
-  position:fixed;inset:0;z-index:59;pointer-events:none;opacity:.18;
-  background-image:
-    linear-gradient(rgba(255,168,74,.10) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,168,74,.10) 1px,transparent 1px);
-  background-size:4px 4px;
-}
-.vignette{
-  position:fixed;inset:0;z-index:63;pointer-events:none;
-  box-shadow:inset 0 0 190px 70px rgba(5,3,1,.94), inset 0 0 60px rgba(0,0,0,.7);
+.cover-box img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.24) brightness(0.86);
+  transition: opacity 0.24s ease;
 }
 
-/* ---------- CONTENEDOR ---------- */
-.container{
-  position:relative;z-index:5;
-  width:100%;max-width:430px;
-  display:flex;flex-direction:column;align-items:center;text-align:center;
+.track-meta {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-/* ---------- AVATAR ---------- */
-.profile-container{position:relative;margin-bottom:26px}
-.avatar-frame{
-  position:relative;width:158px;height:158px;
-  display:grid;place-items:center;
-  animation:flicker 6.5s steps(1,end) infinite;
-}
-@keyframes flicker{
-  0%,93%,100%{filter:none}
-  94%{filter:brightness(1.5) contrast(1.25)}
-  95%{filter:brightness(.55) contrast(1.4) hue-rotate(-14deg)}
-  96%{filter:brightness(1.35)}
-  97%{filter:brightness(.7) saturate(1.6)}
-}
-.avatar-ring{
-  position:absolute;inset:-12px;border-radius:50%;
-  background:conic-gradient(from 0deg,var(--rust),var(--amber),#4a2f16,var(--blood),var(--amber),var(--rust));
-  filter:blur(1px) saturate(1.15);
-  animation:spin 9s linear infinite;
-  opacity:.9;
-}
-@keyframes spin{to{transform:rotate(360deg)}}
-.avatar-hole{
-  position:absolute;inset:-3px;border-radius:50%;background:#0e0905;
-  box-shadow:inset 0 0 0 2px #000;
-}
-.avatar-img{
-  position:relative;width:132px;height:132px;border-radius:50%;
-  background:#191009 url('https://tr.rbxcdn.com/30DAY-AvatarHeadshot-A98D38241A4F28142479DA7317083982-Png/150/150/AvatarHeadshot/Webp/noFilter') center/cover no-repeat;
-  border:2px solid #000;
-  box-shadow:0 0 0 2px var(--edge),0 0 26px rgba(255,140,40,.28),0 14px 30px rgba(0,0,0,.75);
-  filter:contrast(1.12) saturate(.82) brightness(.94);
-  overflow:hidden;
-}
-.avatar-img::after{ /* scanline interna del círculo */
-  content:'';position:absolute;inset:0;
-  background:repeating-linear-gradient(180deg,rgba(0,0,0,.4) 0 1px,transparent 1px 3px);
-  mix-blend-mode:multiply;opacity:.75;
-}
-.avatar-glitch{
-  position:absolute;inset:0;border-radius:50%;
-  background:url('https://tr.rbxcdn.com/30DAY-AvatarHeadshot-A98D38241A4F28142479DA7317083982-Png/150/150/AvatarHeadshot/Webp/noFilter') center/cover no-repeat;
-  mix-blend-mode:screen;opacity:0;
-  animation:avglitch 5.5s steps(1,end) infinite;
-  filter:hue-rotate(280deg) saturate(3) contrast(1.6);
-}
-@keyframes avglitch{
-  0%,88%,100%{opacity:0;transform:translate(0,0)}
-  89%{opacity:.7;transform:translate(-6px,2px)}
-  90%{opacity:.55;transform:translate(7px,-3px)}
-  91%{opacity:.35;transform:translate(-3px,0)}
-  92%{opacity:0}
-}
-.corner{position:absolute;width:13px;height:13px;border:2px solid var(--amber);opacity:.65;z-index:3}
-.c-tl{top:-19px;left:-19px;border-right:0;border-bottom:0}
-.c-tr{top:-19px;right:-19px;border-left:0;border-bottom:0}
-.c-bl{bottom:-19px;left:-19px;border-right:0;border-top:0}
-.c-br{bottom:-19px;right:-19px;border-left:0;border-top:0}
-
-/* status pill bajo el avatar */
-.badge{
-  margin-top:18px;display:inline-flex;align-items:center;gap:8px;
-  padding:5px 11px;background:#150e08;border:1px solid var(--edge);
-  box-shadow:3px 3px 0 #000;font-size:.62rem;letter-spacing:.22em;color:var(--dim);
-  text-transform:uppercase;
-}
-.led{
-  width:8px;height:8px;background:var(--toxic);
-  box-shadow:0 0 9px var(--toxic);
-  animation:blink 1.4s steps(1,end) infinite;
-}
-@keyframes blink{0%,55%{opacity:1}56%,100%{opacity:.15}}
-
-/* ---------- TÍTULO GLITCH ---------- */
-h1{
-  position:relative;margin:22px 0 6px;
-  font-family:'Silkscreen','Share Tech Mono',monospace;font-weight:700;
-  font-size:2.5rem;line-height:1;letter-spacing:.04em;
-  color:#f2e3c6;text-transform:uppercase;
-  text-shadow:3px 3px 0 #000, 0 0 22px rgba(255,150,50,.35);
-  animation:jitter 3.2s steps(1,end) infinite;
-}
-h1::before,h1::after{
-  content:attr(data-text);position:absolute;left:0;top:0;width:100%;
-  pointer-events:none;
-}
-h1::before{color:var(--blood);animation:gl1 2.6s steps(1,end) infinite;mix-blend-mode:screen}
-h1::after{color:#35c8ff;animation:gl2 3.4s steps(1,end) infinite;mix-blend-mode:screen}
-@keyframes gl1{
-  0%,86%,100%{transform:translate(0,0);opacity:0}
-  87%{transform:translate(-4px,2px);opacity:.85}
-  89%{transform:translate(3px,-2px);opacity:.6}
-  91%{transform:translate(-2px,0);opacity:.9}
-  93%{opacity:0}
-}
-@keyframes gl2{
-  0%,80%,100%{transform:translate(0,0);opacity:0}
-  81%{transform:translate(4px,-2px);opacity:.7}
-  84%{transform:translate(-5px,2px);opacity:.55}
-  86%{transform:translate(2px,1px);opacity:.8}
-  88%{opacity:0}
-}
-@keyframes jitter{
-  0%,96%,100%{transform:translate(0,0)}
-  97%{transform:translate(-2px,1px)}
-  98%{transform:translate(2px,-1px)}
-  99%{transform:translate(-1px,0)}
-}
-.subtitle{
-  font-size:.66rem;letter-spacing:.34em;text-transform:uppercase;
-  color:var(--faint);margin-bottom:30px;
-  display:flex;align-items:center;gap:10px;justify-content:center;
-}
-.subtitle::before,.subtitle::after{
-  content:'';width:34px;height:2px;
-  background:repeating-linear-gradient(90deg,var(--edge-hi) 0 4px,transparent 4px 8px);
+.track-title {
+  margin: 0;
+  font-size: 1.04rem;
+  font-weight: 600;
+  line-height: 1.24;
+  letter-spacing: -0.02em;
+  color: var(--label-primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: opacity 0.18s ease, transform 0.22s var(--ease-spring);
 }
 
-/* ---------- PANEL "PIXEL" ---------- */
-.pixel-panel{
-  position:relative;width:100%;
-  background:
-    linear-gradient(180deg,rgba(255,180,90,.05),transparent 40%),
-    linear-gradient(180deg,var(--panel-2),var(--panel));
-  border:2px solid var(--edge);
-  box-shadow:6px 6px 0 rgba(0,0,0,.8), inset 0 0 0 1px rgba(255,178,90,.06), inset 0 0 42px rgba(0,0,0,.65);
-}
-/* esquinas recortadas tipo 8-bit */
-.pixel-panel::before{
-  content:'';position:absolute;inset:-2px;pointer-events:none;
-  background:
-    linear-gradient(135deg,#1a110a 6px,transparent 0) top left,
-    linear-gradient(225deg,#1a110a 6px,transparent 0) top right,
-    linear-gradient(45deg,#16100a 6px,transparent 0) bottom left,
-    linear-gradient(315deg,#16100a 6px,transparent 0) bottom right;
-  background-size:12px 12px;background-repeat:no-repeat;
-}
-/* suciedad dentro del panel */
-.pixel-panel::after{
-  content:'';position:absolute;inset:0;pointer-events:none;opacity:.5;mix-blend-mode:multiply;
-  background:
-    radial-gradient(circle at 88% 12%,rgba(0,0,0,.7) 0 3%,transparent 4%),
-    radial-gradient(circle at 10% 82%,rgba(0,0,0,.55) 0 5%,transparent 6%),
-    repeating-linear-gradient(104deg,transparent 0 22px,rgba(0,0,0,.16) 22px 23px);
+.track-artist {
+  font-size: 0.85rem;
+  color: var(--label-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: opacity 0.18s ease, transform 0.22s var(--ease-spring);
 }
 
-/* ---------- BARRA SUPERIOR ---------- */
-.topbar{
-  position:relative;z-index:2;
-  display:flex;align-items:center;justify-content:space-between;gap:10px;
-  padding:9px 12px;border-bottom:2px solid var(--edge);
-  background:repeating-linear-gradient(45deg,#1a120b 0 6px,#221811 6px 12px);
-}
-.tb-left{display:flex;align-items:center;gap:8px;font-size:.62rem;letter-spacing:.18em;color:var(--amber);text-transform:uppercase}
-.tb-right{display:flex;align-items:center;gap:7px}
-.chip{
-  font-size:.55rem;letter-spacing:.14em;padding:2px 7px;color:var(--dim);
-  border:1px solid var(--edge);background:#120c07;text-transform:uppercase;
-}
-.chip.live{color:#0e0905;background:var(--toxic);border-color:var(--toxic);animation:pulsechip 2s steps(2,end) infinite}
-@keyframes pulsechip{0%,70%{opacity:1}71%,100%{opacity:.45}}
-.dots{display:flex;gap:4px}
-.dots i{width:7px;height:7px;background:var(--edge-hi);display:block}
-.dots i:nth-child(2){background:var(--amber);animation:blink 1.8s steps(1,end) infinite}
-.dots i:nth-child(3){background:var(--rust)}
-
-/* ---------- SECCIONES ---------- */
-.sections-wrapper{width:100%;display:flex;flex-direction:column;gap:22px;margin-top:2px}
-
-.sec-head{
-  display:flex;align-items:center;gap:9px;width:100%;
-  margin:0 0 12px 2px;text-align:left;
-}
-.sec-head svg{width:14px;height:14px;fill:var(--amber);flex-shrink:0;filter:drop-shadow(0 0 6px rgba(255,157,46,.45))}
-.sec-head span{
-  font-family:'Silkscreen',monospace;font-size:.72rem;letter-spacing:.2em;
-  color:var(--dim);text-transform:uppercase;white-space:nowrap;
-}
-.sec-head .rule{
-  flex:1;height:2px;
-  background:repeating-linear-gradient(90deg,var(--edge-hi) 0 3px,transparent 3px 7px);
-  opacity:.8;
-}
-.sec-head .tag{font-size:.55rem;color:var(--faint);letter-spacing:.16em}
-
-/* ---------- LINKS ---------- */
-.links-container{display:flex;flex-direction:column;gap:14px}
-
-.link-card{
-  display:block;text-decoration:none;color:var(--text);
-  padding:14px 15px;
-  transition:transform .12s steps(2,end),box-shadow .12s steps(2,end),border-color .18s ease,background .25s ease;
-  animation:rise .55s cubic-bezier(.2,.9,.25,1) both;
-}
-.link-card:nth-child(1){animation-delay:.05s}
-.link-card:nth-child(2){animation-delay:.13s}
-.link-card:nth-child(3){animation-delay:.21s}
-@keyframes rise{from{opacity:0;transform:translateY(22px) scale(.97)}to{opacity:1;transform:none}}
-
-.link-card:hover,.link-card:focus-visible{
-  transform:translate(-3px,-3px);
-  border-color:var(--edge-hi);
-  box-shadow:10px 10px 0 rgba(0,0,0,.85), 0 0 0 1px rgba(255,157,46,.35), 0 0 34px rgba(255,140,40,.16), inset 0 0 42px rgba(0,0,0,.5);
-  background:linear-gradient(180deg,#2b1e13,#1c140d);
-  outline:none;
-}
-.link-card:active{transform:translate(2px,2px);box-shadow:2px 2px 0 rgba(0,0,0,.85)}
-
-.link-row{position:relative;z-index:2;display:flex;align-items:center;gap:13px}
-
-.ico{
-  width:40px;height:40px;flex-shrink:0;
-  display:grid;place-items:center;
-  background:#120c07;border:2px solid var(--edge);
-  box-shadow:3px 3px 0 rgba(0,0,0,.7), inset 0 0 12px rgba(255,157,46,.07);
-  transition:transform .14s steps(2,end),background .2s ease,border-color .2s ease;
-}
-.ico svg{width:20px;height:20px;fill:var(--amber);transition:fill .2s ease}
-.link-card:hover .ico{
-  transform:translate(-2px,-2px) rotate(-3deg);
-  background:var(--amber);border-color:#000;
-  box-shadow:4px 4px 0 #000,0 0 20px rgba(255,157,46,.5);
-}
-.link-card:hover .ico svg{fill:#140d07}
-
-.link-mid{flex:1;text-align:left;min-width:0}
-.link-text{
-  font-family:'Silkscreen',monospace;font-size:.94rem;letter-spacing:.08em;
-  text-transform:uppercase;color:#f0e0c3;text-shadow:2px 2px 0 #000;
-  display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-}
-.link-sub{
-  font-size:.63rem;letter-spacing:.16em;color:var(--faint);
-  text-transform:uppercase;margin-top:5px;display:block;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-}
-.link-card:hover .link-sub{color:var(--dim)}
-
-.go{
-  width:26px;height:26px;flex-shrink:0;display:grid;place-items:center;
-  color:var(--faint);font-size:.8rem;
-  transition:transform .14s steps(2,end),color .2s ease;
-}
-.link-card:hover .go{color:var(--amber);transform:translateX(4px)}
-
-/* barra de carga animada bajo cada link */
-.prog{
-  position:relative;z-index:2;height:3px;margin-top:12px;background:#100a06;overflow:hidden;
-}
-.prog i{
-  position:absolute;left:0;top:0;height:100%;width:0;
-  background:repeating-linear-gradient(90deg,var(--amber) 0 4px,#7a4a17 4px 8px);
-  transition:width .5s cubic-bezier(.2,.9,.25,1);
-}
-.link-card:hover .prog i{width:100%}
-
-/* ---------- REPRODUCTOR ---------- */
-.player-container{padding:16px 15px 18px;animation:rise .6s .3s cubic-bezier(.2,.9,.25,1) both}
-
-.now-row{display:flex;align-items:flex-start;gap:13px;position:relative;z-index:2}
-
-.cover-wrap{
-  position:relative;width:74px;height:74px;flex-shrink:0;
-  border:2px solid var(--edge);background:#0f0a06;
-  box-shadow:4px 4px 0 rgba(0,0,0,.75), inset 0 0 0 1px #000;
-  overflow:hidden;
-}
-.cover{
-  position:absolute;inset:0;background-size:cover;background-position:center;
-  filter:contrast(1.15) saturate(.7) sepia(.35) brightness(.82);
-  transition:opacity .25s ease,transform .4s steps(6,end);
-}
-.cover-wrap::after{ /* scanlines sobre la portada */
-  content:'';position:absolute;inset:0;pointer-events:none;
-  background:repeating-linear-gradient(180deg,rgba(0,0,0,.45) 0 1px,transparent 1px 3px);
-  mix-blend-mode:multiply;
-}
-.eq{
-  position:absolute;left:0;right:0;bottom:0;height:22px;z-index:3;
-  display:flex;align-items:flex-end;justify-content:space-between;gap:2px;
-  padding:0 4px 3px;pointer-events:none;
-  background:linear-gradient(180deg,transparent,rgba(8,5,2,.85));
-}
-.eq i{flex:1;height:3px;background:var(--toxic);box-shadow:0 0 6px rgba(182,255,46,.6);transition:height .1s linear}
-.eq i:nth-child(2){background:var(--amber)}
-.eq i:nth-child(4){background:var(--blood)}
-.eq.paused i{height:3px !important;background:var(--faint);box-shadow:none}
-
-.track-text{flex:1;min-width:0;text-align:left;padding-top:2px}
-.track-title{
-  font-family:'Silkscreen',monospace;font-size:.86rem;line-height:1.35;
-  color:#f4e6c9;text-shadow:2px 2px 0 #000;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  transition:opacity .18s ease,transform .18s steps(3,end);
-}
-.track-artist{
-  font-size:.66rem;letter-spacing:.16em;color:var(--dim);text-transform:uppercase;
-  margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  transition:opacity .18s ease,transform .18s steps(3,end);
-}
-.track-status{
-  display:inline-flex;align-items:center;gap:6px;margin-top:8px;
-  font-size:.56rem;letter-spacing:.2em;color:var(--faint);text-transform:uppercase;
-}
-.track-status b{width:6px;height:6px;background:var(--faint);display:block}
-.track-status.playing{color:var(--toxic)}
-.track-status.playing b{background:var(--toxic);box-shadow:0 0 8px var(--toxic);animation:blink 1s steps(1,end) infinite}
-.swapping{opacity:0;transform:translateX(-8px)}
-
-/* seekbar */
-.seek{
-  position:relative;z-index:2;margin-top:16px;height:14px;cursor:pointer;
-  display:flex;align-items:center;
-}
-.seek-track{
-  position:relative;width:100%;height:8px;background:#0e0905;
-  border:1px solid #000;box-shadow:inset 0 0 8px rgba(0,0,0,.9);overflow:hidden;
-}
-.seek-buf{position:absolute;left:0;top:0;bottom:0;width:0;background:#2a1d12}
-.seek-fill{
-  position:absolute;left:0;top:0;bottom:0;width:0;
-  background:repeating-linear-gradient(90deg,var(--amber) 0 3px,#8a5318 3px 6px);
-  box-shadow:0 0 12px rgba(255,157,46,.4);
-}
-.seek-knob{
-  position:absolute;top:-3px;left:0;width:6px;height:18px;margin-left:-3px;
-  background:#f4e6c9;border:1px solid #000;box-shadow:0 0 10px rgba(255,157,46,.6);
-  transition:transform .1s steps(2,end);
-}
-.seek:hover .seek-knob{transform:scaleY(1.15)}
-.times{
-  position:relative;z-index:2;display:flex;justify-content:space-between;
-  font-size:.58rem;letter-spacing:.14em;color:var(--faint);margin-top:7px;
+.is-swapping {
+  opacity: 0;
+  transform: translateY(3px);
 }
 
-/* controles */
-.player-controls{
-  position:relative;z-index:2;display:flex;align-items:center;justify-content:center;
-  gap:14px;margin-top:16px;
+/* ---------- LÍNEA DE REPRODUCCIÓN CLÁSICA CON KNOB ---------- */
+.scrubber-wrap {
+  margin-bottom: 14px;
 }
-.ctrl{
-  width:44px;height:44px;display:grid;place-items:center;cursor:pointer;
-  background:#150e08;color:var(--dim);border:2px solid var(--edge);
-  box-shadow:4px 4px 0 rgba(0,0,0,.75);
-  font-size:.95rem;
-  transition:transform .1s steps(2,end),color .18s ease,border-color .18s ease,background .18s ease,box-shadow .1s steps(2,end);
-  font-family:inherit;
-}
-.ctrl svg{width:18px;height:18px;fill:currentColor}
-.ctrl:hover{color:var(--amber);border-color:var(--edge-hi);background:#1e150d;transform:translate(-2px,-2px);box-shadow:6px 6px 0 rgba(0,0,0,.8)}
-.ctrl:active{transform:translate(2px,2px);box-shadow:1px 1px 0 rgba(0,0,0,.8)}
-.ctrl.play{
-  width:60px;height:60px;font-size:1.25rem;
-  background:linear-gradient(180deg,#3a2413,#1d1209);
-  color:var(--amber);border-color:var(--edge-hi);
-  box-shadow:5px 5px 0 rgba(0,0,0,.85),0 0 26px rgba(255,157,46,.18),inset 0 0 18px rgba(255,157,46,.1);
-}
-.ctrl.play svg{width:22px;height:22px}
-.ctrl.play:hover{background:var(--amber);color:#140d07;border-color:#000;box-shadow:7px 7px 0 rgba(0,0,0,.9),0 0 34px rgba(255,157,46,.45)}
-.ctrl.on{color:var(--toxic);border-color:#4a6b12;background:#161c0c}
 
-/* volumen */
-.vol{
-  position:relative;z-index:2;display:flex;align-items:center;gap:10px;
-  margin-top:16px;padding-top:14px;border-top:1px dashed #332415;
+.seek {
+  position: relative;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  touch-action: none;
+  outline: none;
 }
-.vol svg{width:16px;height:16px;fill:var(--faint);flex-shrink:0}
-.vol input[type=range]{
-  -webkit-appearance:none;appearance:none;flex:1;height:8px;background:#0e0905;
-  border:1px solid #000;outline:none;cursor:pointer;
-}
-.vol input[type=range]::-webkit-slider-thumb{
-  -webkit-appearance:none;width:12px;height:18px;background:var(--amber);
-  border:1px solid #000;box-shadow:0 0 8px rgba(255,157,46,.55);cursor:pointer;
-}
-.vol input[type=range]::-moz-range-thumb{
-  width:12px;height:18px;border-radius:0;background:var(--amber);border:1px solid #000;cursor:pointer;
-}
-.vol-val{font-size:.6rem;letter-spacing:.14em;color:var(--faint);width:34px;text-align:right}
 
-/* playlist */
-.playlist{position:relative;z-index:2;margin-top:14px;display:flex;flex-direction:column;gap:5px}
-.pl-item{
-  display:flex;align-items:center;gap:9px;padding:7px 9px;cursor:pointer;
-  background:#130d08;border:1px solid #2a1d12;
-  font-family:inherit;font-size:.68rem;letter-spacing:.06em;color:var(--dim);
-  text-align:left;width:100%;
-  transition:background .18s ease,color .18s ease,border-color .18s ease,transform .1s steps(2,end);
+.seek-track {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.13);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+  transition: height 0.2s var(--ease-spring);
 }
-.pl-item:hover{background:#1e150d;color:var(--text);border-color:var(--edge-hi);transform:translateX(3px)}
-.pl-item.active{color:var(--amber);border-color:#6b4c2c;background:#241709}
-.pl-idx{width:16px;color:var(--faint);font-size:.62rem}
-.pl-item.active .pl-idx{color:var(--toxic)}
-.pl-name{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pl-dur{font-size:.6rem;color:var(--faint)}
 
-/* ---------- FOOTER ---------- */
-.footer{
-  margin-top:26px;font-size:.58rem;letter-spacing:.26em;color:#4d3d2b;
-  text-transform:uppercase;display:flex;align-items:center;gap:8px;
-  animation:rise .6s .45s cubic-bezier(.2,.9,.25,1) both;
+.seek:hover .seek-track,
+.seek.dragging .seek-track {
+  height: 8px;
 }
-.footer .sq{width:5px;height:5px;background:var(--rust);animation:blink 2.2s steps(1,end) infinite}
 
-/* ---------- BOOT OVERLAY ---------- */
-.boot{
-  position:fixed;inset:0;z-index:90;background:#0b0704;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
-  transition:opacity .5s ease,visibility .5s;
+.seek:focus-visible .seek-track {
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.55), 0 0 0 3px rgba(10, 132, 255, 0.36);
 }
-.boot.hide{opacity:0;visibility:hidden}
-.boot-logo{
-  font-family:'Silkscreen',monospace;font-size:1.5rem;letter-spacing:.14em;color:var(--amber);
-  text-shadow:3px 3px 0 #000;animation:blink .8s steps(1,end) infinite;
+
+.seek-buf {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0%;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
 }
-.boot-bar{width:190px;height:10px;border:2px solid var(--edge);background:#120c07;padding:1px}
-.boot-bar i{display:block;height:100%;width:0;background:repeating-linear-gradient(90deg,var(--amber) 0 4px,#7a4a17 4px 8px);animation:load 1.1s steps(12,end) forwards}
-@keyframes load{to{width:100%}}
-.boot-txt{font-size:.6rem;letter-spacing:.24em;color:var(--faint);text-transform:uppercase}
+
+.seek-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0%;
+  background: rgba(245, 245, 247, 0.9);
+  border-radius: 9999px;
+}
+
+.seek-knob {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  width: 5px;
+  height: 15px;
+  border-radius: 9999px;
+  background: #FFFFFF;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.45), 0 2px 8px rgba(0, 0, 0, 0.65);
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s var(--ease-spring), height 0.2s var(--ease-spring);
+  pointer-events: none;
+}
+
+.seek:hover .seek-knob,
+.seek.dragging .seek-knob {
+  height: 18px;
+  transform: translate(-50%, -50%) scaleX(1.15);
+}
+
+.times {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--label-tertiary);
+}
+
+/* ---------- BARRA UNIFICADA: CONTROLES + VOLUMEN COMPACTO ---------- */
+.controls-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 14px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.ctrl-btn {
+  position: relative;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  color: var(--label-secondary);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  transition:
+    transform 0.28s var(--ease-spring),
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.ctrl-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.38);
+}
+
+.ctrl-btn.sm {
+  width: 32px;
+  height: 32px;
+  color: var(--label-tertiary);
+}
+
+.ctrl-btn.sm svg {
+  width: 15px;
+  height: 15px;
+}
+
+.ctrl-btn.md {
+  width: 38px;
+  height: 38px;
+  color: var(--label-primary);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ctrl-btn.md svg {
+  width: 19px;
+  height: 19px;
+}
+
+.ctrl-btn.sm:hover {
+  color: var(--label-primary);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.ctrl-btn.md:hover {
+  background: rgba(255, 255, 255, 0.11);
+}
+
+.ctrl-btn.sm:active,
+.ctrl-btn.md:active {
+  transform: scale(0.9);
+}
+
+.ctrl-btn.sm.is-on {
+  color: var(--label-primary);
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.ctrl-btn.play {
+  width: 48px;
+  height: 48px;
+  background: var(--label-primary);
+  color: #09090B;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+}
+
+.ctrl-btn.play svg {
+  width: 20px;
+  height: 20px;
+}
+
+.ctrl-btn.play:hover {
+  background: #FFFFFF;
+  transform: scale(1.05);
+}
+
+.ctrl-btn.play:active {
+  transform: scale(0.93);
+}
+
+/* CÁPSULA COMPACTA DE VOLUMEN */
+.vol-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 11px 6px 7px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(255, 255, 255, 0.085);
+}
+
+.vol-btn {
+  width: 24px;
+  height: 24px;
+  border: 0;
+  padding: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--label-secondary);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.vol-btn:hover {
+  color: var(--label-primary);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.vol-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(10, 132, 255, 0.4);
+}
+
+.vol-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.vol-slider {
+  --vol-pct: 70%;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 72px;
+  height: 4px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, rgba(245, 245, 247, 0.88) var(--vol-pct), rgba(255, 255, 255, 0.14) var(--vol-pct));
+  outline: none;
+  cursor: pointer;
+}
+
+.vol-slider:focus-visible {
+  box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.34);
+}
+
+.vol-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.65);
+  cursor: pointer;
+}
+
+.vol-slider::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border: 0;
+  border-radius: 50%;
+  background: #FFFFFF;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.65);
+  cursor: pointer;
+}
+
+/* ---------- PLAYLIST (PORTADAS EN BLANCO Y NEGRO EMO-DARK) ---------- */
+.playlist {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pl-item {
+  width: 100%;
+  border: 0;
+  padding: 6px 8px;
+  border-radius: 11px;
+  background: transparent;
+  color: var(--label-secondary);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s var(--ease-spring);
+}
+
+.pl-item:hover {
+  background: rgba(255, 255, 255, 0.055);
+  color: var(--label-primary);
+}
+
+.pl-item:active {
+  transform: scale(0.99);
+}
+
+.pl-item:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px rgba(10, 132, 255, 0.45);
+}
+
+.pl-item.active {
+  background: rgba(255, 255, 255, 0.095);
+  color: var(--label-primary);
+}
+
+.pl-thumb {
+  position: relative;
+  width: 31px;
+  height: 31px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: #1A1A1D;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  display: grid;
+  place-items: center;
+}
+
+.pl-thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, transparent 42%, rgba(0, 0, 0, 0.5) 100%);
+  pointer-events: none;
+}
+
+.pl-thumb svg {
+  width: 13px;
+  height: 13px;
+  color: rgba(255, 255, 255, 0.22);
+}
+
+.pl-thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.22) brightness(0.84);
+}
+
+.pl-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.pl-name {
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pl-item.active .pl-name {
+  font-weight: 600;
+}
+
+.pl-artist {
+  font-size: 0.71rem;
+  color: var(--label-tertiary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pl-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.pl-eq {
+  display: none;
+  align-items: flex-end;
+  gap: 2px;
+  height: 12px;
+}
+
+.pl-item.active .pl-eq {
+  display: inline-flex;
+}
+
+.pl-eq i {
+  display: block;
+  width: 2px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--label-primary);
+  transition: height 55ms linear;
+}
+
+.pl-dur {
+  font-size: 0.71rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--label-tertiary);
+  min-width: 32px;
+  text-align: right;
+}
 
 /* ---------- RESPONSIVE ---------- */
-@media (max-width:420px){
-  h1{font-size:2.05rem}
-  .link-text{font-size:.85rem}
-  body{padding:36px 14px 56px}
-  .avatar-frame{width:140px;height:140px}
-  .avatar-img{width:116px;height:116px}
+@media (max-width: 859px) {
+  .stage {
+    max-width: 460px;
+  }
+
+  .bento {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 18px;
+    grid-template-areas:
+      "pill"
+      "profile"
+      "socials"
+      "player";
+  }
 }
 
-/* ---------- ACCESIBILIDAD: menos movimiento ---------- */
-@media (prefers-reduced-motion:reduce){
-  *{animation-duration:.001s !important;animation-iteration-count:1 !important;transition-duration:.001s !important}
-  .grain,.crt-bar{display:none}
+@media (max-width: 460px) {
+  .glass {
+    border-radius: 24px;
+  }
+
+  .dynamic-pill {
+    border-radius: 9999px;
+  }
+
+  .social-card {
+    border-radius: 18px;
+  }
+
+  .player-card {
+    padding: 20px 18px;
+  }
+
+  .controls-bar {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .vol-pill {
+    width: 176px;
+  }
+
+  .vol-slider {
+    flex: 1;
+    width: auto;
+  }
+
+  .cover-stage {
+    width: 102px;
+    height: 76px;
+  }
+
+  .cover-box {
+    width: 76px;
+    height: 76px;
+  }
+
+  .vinyl-wrap {
+    width: 68px;
+    height: 68px;
+    left: 16px;
+    top: 4px;
+  }
+
+  .player-card.is-playing .vinyl-wrap {
+    transform: translateX(18px) scale(1);
+  }
+}
+
+/* ---------- ACCESSIBILITY ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
 </style>
 </head>
 <body>
 
-<!-- CAPAS DE FONDO -->
-<div class="bg-photo" aria-hidden="true"></div>
-<div class="bg-wash" aria-hidden="true"></div>
-<div class="bg-stains" aria-hidden="true"></div>
-<div class="pixelgrid" aria-hidden="true"></div>
-<div class="grain" aria-hidden="true"></div>
-<div class="scanlines" aria-hidden="true"></div>
-<div class="crt-bar" aria-hidden="true"></div>
-<div class="vignette" aria-hidden="true"></div>
+<main class="stage">
+  <div class="bento">
 
-<!-- BOOT -->
-<div class="boot" id="boot" aria-hidden="true">
-  <div class="boot-logo">ALEJOOWS</div>
-  <div class="boot-bar"><i></i></div>
-  <div class="boot-txt" id="bootTxt">cargando sistema...</div>
-</div>
-
-<div class="container">
-
-  <!-- AVATAR -->
-  <div class="profile-container">
-    <div class="avatar-frame">
-      <span class="corner c-tl"></span><span class="corner c-tr"></span>
-      <span class="corner c-bl"></span><span class="corner c-br"></span>
-      <div class="avatar-ring"></div>
-      <div class="avatar-hole"></div>
-      <div class="avatar-img" role="img" aria-label="Avatar de alejoows">
-        <div class="avatar-glitch"></div>
-      </div>
-    </div>
-    <div class="badge"><span class="led"></span> online · 24/7</div>
-  </div>
-
-  <!-- TÍTULO -->
-  <h1 data-text="alejoows">alejoows</h1>
-  <div class="subtitle">dark / grunge / pixel</div>
-
-  <div class="sections-wrapper">
-
-    <!-- PANEL LINKS -->
-    <section class="pixel-panel">
-      <div class="topbar">
-        <div class="tb-left">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h6v2H5v4H3V3zm12 0h6v6h-2V5h-4V3zM3 15h2v4h4v2H3v-6zm16 0h2v6h-6v-2h4v-4zM8 8h8v8H8V8z"/></svg>
-          <span>enlaces</span>
-        </div>
-        <div class="tb-right">
-          <span class="chip live">3/3</span>
-          <span class="dots"><i></i><i></i><i></i></span>
-        </div>
+    <!-- PERFIL (ARRIBA IZQUIERDA, ALTURA EQUILIBRADA) -->
+    <section class="glass profile-card reveal reveal-2" aria-label="Perfil">
+      <div class="poster-band">
+        <div class="poster-blur" style="background-image:url('https://tr.rbxcdn.com/30DAY-AvatarHeadshot-9C194E0578C72073F254C4FDBF7DF054-Png/150/150/AvatarHeadshot/Webp/noFilter')" aria-hidden="true"></div>
+        <div class="poster-fade" aria-hidden="true"></div>
       </div>
 
-      <div style="padding:16px 15px 18px">
-        <div class="links-container">
-
-          <!-- TIKTOK -->
-          <a class="pixel-panel link-card" href="https://www.tiktok.com/@alejoows" target="_blank" rel="noopener">
-            <div class="link-row">
-              <span class="ico">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2h4v4H6v6h4v4h4v-4h4V8h-4V4h-4v12h-4v-4H4V2z"/></svg>
-              </span>
-              <span class="link-mid">
-                <span class="link-text">TikTok</span>
-                <span class="link-sub">@alejoows · clips</span>
-              </span>
-              <span class="go"><i class="fa-solid fa-chevron-right"></i></span>
-            </div>
-            <div class="prog"><i></i></div>
-          </a>
-
-          <!-- INSTAGRAM -->
-          <a class="pixel-panel link-card" href="https://www.instagram.com/alejoows" target="_blank" rel="noopener">
-            <div class="link-row">
-              <span class="ico">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 2h20v20H2V2zm3 3v14h14V5H5zm7 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 3a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm5-4h2v2h-2V6z"/></svg>
-              </span>
-              <span class="link-mid">
-                <span class="link-text">Instagram</span>
-                <span class="link-sub">@alejoows · fotos</span>
-              </span>
-              <span class="go"><i class="fa-solid fa-chevron-right"></i></span>
-            </div>
-            <div class="prog"><i></i></div>
-          </a>
-
-          <!-- ROBLOX -->
-          <a class="pixel-panel link-card" href="https://www.roblox.com/es/users/5749966842/profile" target="_blank" rel="noopener">
-            <div class="link-row">
-              <span class="ico">
-                <svg viewBox="0 0 256 256" aria-hidden="true"><path d="M189.7 218.3 37.7 177.6c-5.2-1.4-8.3-6.8-6.9-12L71.5 13.7c1.4-5.2 6.8-8.3 12-6.9l152 40.7c5.2 1.4 8.3 6.8 6.9 12l-40.7 151.9c-1.4 5.2-6.8 8.3-12 6.9zm-55.4-118-38-10.2-10.2 38 38 10.2 10.2-38z"/></svg>
-              </span>
-              <span class="link-mid">
-                <span class="link-text">Roblox</span>
-                <span class="link-sub">perfil · id 5749966842</span>
-              </span>
-              <span class="go"><i class="fa-solid fa-chevron-right"></i></span>
-            </div>
-            <div class="prog"><i></i></div>
-          </a>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- PANEL REPRODUCTOR -->
-    <section class="pixel-panel player-container">
-      <div class="topbar" style="margin:-16px -15px 16px;width:calc(100% + 30px)">
-        <div class="tb-left">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
-          <span>reproductor</span>
-        </div>
-        <div class="tb-right">
-          <span class="chip" id="chipTrack">trk 01</span>
-          <span class="chip" id="chipState">stop</span>
-        </div>
-      </div>
-
-      <div class="now-row">
-        <div class="cover-wrap">
-          <div class="cover" id="cover"></div>
-          <div class="eq paused" id="eq">
-            <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      <div class="profile-main">
+        <div class="profile-row">
+          <div class="avatar-squircle">
+            <span class="avatar-fallback" aria-hidden="true">a</span>
+            <img
+              src="https://tr.rbxcdn.com/30DAY-AvatarHeadshot-9C194E0578C72073F254C4FDBF7DF054-Png/150/150/AvatarHeadshot/Webp/noFilter"
+              alt="Avatar de alejoows"
+              loading="eager"
+              onerror="this.style.display='none'"
+            >
+          </div>
+          <div class="profile-text">
+            <h1 class="profile-name">alejoows</h1>
           </div>
         </div>
-        <div class="track-text">
-          <div class="track-title" id="title">cargando...</div>
-          <div class="track-artist" id="artist">— — —</div>
-          <div class="track-status" id="status"><b></b><span id="statusTxt">pausado</span></div>
+      </div>
+    </section>
+
+    <!-- DYNAMIC ISLAND AL COSTADO DERECHO DEL PERFIL -->
+    <div class="pill-bar reveal reveal-1">
+      <button class="glass dynamic-pill" id="dynamicPill" type="button" title="Reproducir o pausar" aria-label="Control rápido de música">
+        <span class="pill-content">
+          <span class="pill-thumb">
+            <svg class="pill-note" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/>
+            </svg>
+            <img id="pillImg" alt="" onerror="this.style.display='none'">
+          </span>
+          <span class="pill-text">
+            <span class="pill-title" id="pillTitle">Runaway</span>
+            <span class="pill-sub" id="pillSub">Mars Argo</span>
+          </span>
+          <span class="pill-eq" id="pillEq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        </span>
+      </button>
+    </div>
+
+    <!-- REDES SOCIALES (ABAJO IZQUIERDA) -->
+    <section class="socials-section reveal reveal-3" aria-label="Redes sociales">
+      <h2 class="section-label">Redes</h2>
+      <div class="links-stack">
+
+        <a class="glass social-card" href="https://www.tiktok.com/@alej_sebs" target="_blank" rel="noopener noreferrer">
+          <span class="ios-icon" aria-hidden="true">
+            <svg viewBox="0 0 100 100">
+              <defs>
+                <linearGradient id="iconBgTT" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#2A2A2E"/>
+                  <stop offset="100%" stop-color="#141416"/>
+                </linearGradient>
+                <linearGradient id="iconRimTT" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="rgba(255,255,255,0.34)"/>
+                  <stop offset="50%" stop-color="rgba(255,255,255,0.06)"/>
+                  <stop offset="100%" stop-color="rgba(255,255,255,0.16)"/>
+                </linearGradient>
+                <linearGradient id="iconSheenTT" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="rgba(255,255,255,0.12)"/>
+                  <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                </linearGradient>
+                <clipPath id="sqClipTT">
+                  <path d="M30,2 L70,2 C90,2 98,10 98,30 L98,70 C98,90 90,98 70,98 L30,98 C10,98 2,90 2,70 L2,30 C2,10 10,2 30,2 Z"/>
+                </clipPath>
+              </defs>
+              <g clip-path="url(#sqClipTT)">
+                <rect width="100" height="100" fill="url(#iconBgTT)"/>
+                <rect width="100" height="46" fill="url(#iconSheenTT)"/>
+                <g transform="translate(22, 21) scale(2.35)">
+                  <path fill="#F5F5F7" d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15.2a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.81a8.23 8.23 0 0 0 4.76 1.5v-3.4a4.85 4.85 0 0 1-1-.22z"/>
+                </g>
+              </g>
+              <path d="M30,2 L70,2 C90,2 98,10 98,30 L98,70 C98,90 90,98 70,98 L30,98 C10,98 2,90 2,70 L2,30 C2,10 10,2 30,2 Z" fill="none" stroke="url(#iconRimTT)" stroke-width="2"/>
+            </svg>
+          </span>
+          <span class="social-meta">
+            <span class="social-title">TikTok</span>
+            <span class="social-sub">@alej_sebs</span>
+          </span>
+          <span class="social-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17L17 7"/><path d="M8 7h9v9"/>
+            </svg>
+          </span>
+        </a>
+
+        <a class="glass social-card" href="https://www.instagram.com/bastian_stn0/" target="_blank" rel="noopener noreferrer">
+          <span class="ios-icon" aria-hidden="true">
+            <svg viewBox="0 0 100 100">
+              <defs>
+                <linearGradient id="iconBgIG" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#2A2A2E"/>
+                  <stop offset="100%" stop-color="#141416"/>
+                </linearGradient>
+                <linearGradient id="iconRimIG" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="rgba(255,255,255,0.34)"/>
+                  <stop offset="50%" stop-color="rgba(255,255,255,0.06)"/>
+                  <stop offset="100%" stop-color="rgba(255,255,255,0.16)"/>
+                </linearGradient>
+                <linearGradient id="iconSheenIG" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="rgba(255,255,255,0.12)"/>
+                  <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                </linearGradient>
+                <clipPath id="sqClipIG">
+                  <path d="M30,2 L70,2 C90,2 98,10 98,30 L98,70 C98,90 90,98 70,98 L30,98 C10,98 2,90 2,70 L2,30 C2,10 10,2 30,2 Z"/>
+                </clipPath>
+              </defs>
+              <g clip-path="url(#sqClipIG)">
+                <rect width="100" height="100" fill="url(#iconBgIG)"/>
+                <rect width="100" height="46" fill="url(#iconSheenIG)"/>
+                <rect x="24" y="24" width="52" height="52" rx="15" fill="none" stroke="#F5F5F7" stroke-width="5.2"/>
+                <circle cx="50" cy="50" r="12.5" fill="none" stroke="#F5F5F7" stroke-width="5.2"/>
+                <circle cx="64.5" cy="35.5" r="3.4" fill="#F5F5F7"/>
+              </g>
+              <path d="M30,2 L70,2 C90,2 98,10 98,30 L98,70 C98,90 90,98 70,98 L30,98 C10,98 2,90 2,70 L2,30 C2,10 10,2 30,2 Z" fill="none" stroke="url(#iconRimIG)" stroke-width="2"/>
+            </svg>
+          </span>
+          <span class="social-meta">
+            <span class="social-title">Instagram</span>
+            <span class="social-sub">@bastian_stn0</span>
+          </span>
+          <span class="social-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17L17 7"/><path d="M8 7h9v9"/>
+            </svg>
+          </span>
+        </a>
+
+        <a class="glass social-card" href="https://www.roblox.com/es/users/5749966842/profile" target="_blank" rel="noopener noreferrer">
+          <span class="ios-icon" aria-hidden="true">
+            <svg viewBox="0 0 100 100">
+              <defs>
+                <linearGradient id="iconBgRB" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#2A2A2E"/>
+                  <stop offset="100%" stop-color="#141416"/>
+                </linearGradient>
+                <linearGradient id="iconRimRB" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="rgba(255,255,255,0.34)"/>
+                  <stop offset="50%" stop-color="rgba(255,255,255,0.06)"/>
+                  <stop offset="100%" stop-color="rgba(255,255,255,0.16)"/>
+                </linearGradient>
+                <linearGradient id="iconSheenRB" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="rgba(255,255,255,0.12)"/>
+                  <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                </linearGradient>
+                <clipPath id="sqClipRB">
+                  <path d="M30,2 L70,2 C90,2 98,10 98,30 L98,70 C98,90 90,98 70,98 L30,98 C10,98 2,90 2,70 L2,30 C2,10 10,2 30,2 Z"/>
+                </clipPath>
+              </defs>
+              <g clip-path="url(#sqClipRB)">
+                <rect width="100" height="100" fill="url(#iconBgRB)"/>
+                <rect width="100" height="46" fill="url(#iconSheenRB)"/>
+                <g transform="translate(50, 50) rotate(15)">
+                  <path fill="#F5F5F7" fill-rule="evenodd" d="M -20.5,-25.5 H 20.5 A 5,5 0 0 1 25.5,-20.5 V 20.5 A 5,5 0 0 1 20.5,25.5 H -20.5 A 5,5 0 0 1 -25.5,20.5 V -20.5 A 5,5 0 0 1 -20.5,-25.5 Z M -7.2,-7.2 H 7.2 V 7.2 H -7.2 Z"/>
+                </g>
+              </g>
+              <path d="M30,2 L70,2 C90,2 98,10 98,30 L98,70 C98,90 90,98 70,98 L30,98 C10,98 2,90 2,70 L2,30 C2,10 10,2 30,2 Z" fill="none" stroke="url(#iconRimRB)" stroke-width="2"/>
+            </svg>
+          </span>
+          <span class="social-meta">
+            <span class="social-title">Roblox</span>
+            <span class="social-sub">ID 5749966842</span>
+          </span>
+          <span class="social-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17L17 7"/><path d="M8 7h9v9"/>
+            </svg>
+          </span>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- REPRODUCTOR (DERECHA, DEBAJO DE LA ISLA) -->
+    <section class="glass player-card reveal reveal-4" id="playerCard" aria-label="Reproductor de música">
+      <div class="player-ambient" id="playerAmbient" aria-hidden="true"></div>
+
+      <div class="player-inner">
+
+        <div class="now-playing">
+          <div class="cover-stage">
+            <div class="vinyl-wrap" aria-hidden="true">
+              <div class="vinyl-disc">
+                <div class="vinyl-label">
+                  <img id="vinylImg" alt="" onerror="this.style.display='none'">
+                </div>
+                <span class="vinyl-spindle"></span>
+              </div>
+              <div class="vinyl-sheen"></div>
+            </div>
+
+            <div class="cover-box">
+              <svg class="cover-fallback" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/>
+              </svg>
+              <img id="coverImg" alt="" loading="eager" style="opacity:0" onload="this.style.opacity='1'" onerror="this.style.opacity='0'">
+            </div>
+          </div>
+
+          <div class="track-meta">
+            <h2 class="track-title" id="title">Runaway</h2>
+            <div class="track-artist" id="artist">Mars Argo</div>
+          </div>
         </div>
-      </div>
 
-      <div class="seek" id="seek" role="slider" aria-label="Progreso de la pista" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-        <div class="seek-track">
-          <div class="seek-buf" id="buf"></div>
-          <div class="seek-fill" id="fill"></div>
+        <div class="scrubber-wrap">
+          <div class="seek" id="seek" role="slider" aria-label="Progreso de la pista" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div class="seek-track">
+              <div class="seek-buf" id="buf"></div>
+              <div class="seek-fill" id="fill"></div>
+            </div>
+            <div class="seek-knob" id="knob"></div>
+          </div>
+          <div class="times">
+            <span id="cur">0:00</span>
+            <span id="dur">0:00</span>
+          </div>
         </div>
-        <div class="seek-knob" id="knob"></div>
-      </div>
-      <div class="times"><span id="cur">0:00</span><span id="dur">0:00</span></div>
 
-      <div class="player-controls">
-        <button class="ctrl" id="shuffleBtn" title="Aleatorio" aria-label="Aleatorio">
-          <i class="fa-solid fa-shuffle"></i>
-        </button>
-        <button class="ctrl" id="prevBtn" title="Anterior" aria-label="Pista anterior">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h3v16H4V4zm16 0v16l-11-8 11-8z"/></svg>
-        </button>
-        <button class="ctrl play" id="playBtn" title="Reproducir / Pausar" aria-label="Reproducir o pausar">
-          <svg viewBox="0 0 24 24" aria-hidden="true" id="playIco"><path d="M5 3h4v18H5V3zm10 0h4v18h-4V3z"/></svg>
-        </button>
-        <button class="ctrl" id="nextBtn" title="Siguiente" aria-label="Pista siguiente">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 4h3v16h-3V4zM4 4l11 8-11 8V4z"/></svg>
-        </button>
-        <button class="ctrl" id="repeatBtn" title="Repetir" aria-label="Repetir">
-          <i class="fa-solid fa-repeat"></i>
-        </button>
-      </div>
+        <!-- CONTROLES + VOLUMEN COMPACTO EN UNA SOLA FILA ESTRATÉGICA -->
+        <div class="controls-bar">
+          <div class="controls">
+            <button class="ctrl-btn sm" id="shuffleBtn" type="button" title="Aleatorio" aria-label="Reproducción aleatoria" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M16 3h5v5"/><path d="M4 20L21 3"/><path d="M21 16v5h-5"/><path d="M15 15l6 6"/><path d="M4 4l5 5"/>
+              </svg>
+            </button>
 
-      <div class="vol">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h4l5-5v16l-5-5H3V9zm13-1v8h2V8h-2zm3-3v14h2V5h-2z"/></svg>
-        <input type="range" id="vol" min="0" max="100" value="70" aria-label="Volumen">
-        <span class="vol-val" id="volVal">70</span>
-      </div>
+            <button class="ctrl-btn md" id="prevBtn" type="button" title="Anterior" aria-label="Pista anterior">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M11.65 6.8a1.1 1.1 0 0 0-1.72-.91L3.35 10.6a1.7 1.7 0 0 0 0 2.8l6.58 4.71a1.1 1.1 0 0 0 1.72-.91V6.8zm9 0a1.1 1.1 0 0 0-1.72-.91l-6.58 4.71a1.7 1.7 0 0 0 0 2.8l6.58 4.71a1.1 1.1 0 0 0 1.72-.91V6.8z"/>
+              </svg>
+            </button>
 
-      <div class="playlist" id="playlist"></div>
+            <button class="ctrl-btn play" id="playBtn" type="button" title="Reproducir / Pausar" aria-label="Reproducir">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M8.2 5.28a1.2 1.2 0 0 1 1.85-1.01l10.22 6.72a1.2 1.2 0 0 1 0 2.02L10.05 19.73A1.2 1.2 0 0 1 8.2 18.72V5.28z"/>
+              </svg>
+            </button>
+
+            <button class="ctrl-btn md" id="nextBtn" type="button" title="Siguiente" aria-label="Pista siguiente">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12.35 6.8a1.1 1.1 0 0 1 1.72-.91l6.58 4.71a1.7 1.7 0 0 1 0 2.8l-6.58 4.71a1.1 1.1 0 0 1-1.72-.91V6.8zm-9 0a1.1 1.1 0 0 1 1.72-.91l6.58 4.71a1.7 1.7 0 0 1 0 2.8l-6.58 4.71a1.1 1.1 0 0 1-1.72-.91V6.8z"/>
+              </svg>
+            </button>
+
+            <button class="ctrl-btn sm" id="repeatBtn" type="button" title="Repetir pista" aria-label="Repetir pista actual" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M17 2l4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/>
+              </svg>
+            </button>
+          </div>
+
+          <div class="vol-pill">
+            <button class="vol-btn" id="muteBtn" type="button" title="Silenciar" aria-label="Silenciar o activar audio">
+              <svg id="volIconLow" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M5.5 9.25H3.2A1.7 1.7 0 0 0 1.5 10.95v2.1a1.7 1.7 0 0 0 1.7 1.7h2.3l4.38 3.65a1 1 0 0 0 1.62-.78V6.38a1 1 0 0 0-1.62-.78L5.5 9.25zm9.68-.68a.9.9 0 0 0-1.27 1.27 3.1 3.1 0 0 1 0 4.32.9.9 0 1 0 1.27 1.27 4.9 4.9 0 0 0 0-6.86z"/>
+              </svg>
+            </button>
+            <input class="vol-slider" type="range" id="vol" min="0" max="100" value="70" aria-label="Volumen">
+          </div>
+        </div>
+
+        <div class="playlist" id="playlist" role="list" aria-label="Lista de reproducción"></div>
+      </div>
     </section>
 
   </div>
-
-  <div class="footer"><span class="sq"></span> syg_01 · no signal · alejoows <span class="sq"></span></div>
-</div>
+</main>
 
 <script>
-/* ============================================================
-   PLAYLIST
-   ============================================================ */
 const playlist = [
-  { titulo:"RUNAWAY", artist:"kanye west", url:"https://files.catbox.moe/47n050.mp3",
-    portada:"https://i.postimg.cc/JzZ40pr9/ad26202c265fccc74e5a5b4a754d7190.jpg" },
-  { titulo:"Leni (Crystal Castles vs GoodBooks)", artist:"crystal castles", url:"https://files.catbox.moe/1kldwc.mp3",
-    portada:"https://i.postimg.cc/cJTWtjV9/7ab9e7f9ce15395e67d24d6721c8c97a.jpg" },
-  { titulo:"4 Morant", artist:"—", url:"https://files.catbox.moe/vs9wbu.mp3",
-    portada:"https://i.postimg.cc/prjXjCQh/66cb84ed609c98fb54228174c482a4fe.jpg" },
-  { titulo:"Oblivion", artist:"grimes", url:"https://files.catbox.moe/f5g1qa.mp3",
-    portada:"https://i.postimg.cc/Y9GpcRPM/fba5d91ad47954e008ac2cbfac6eb43d.jpg" }
+  {
+    titulo: "Runaway",
+    artist: "Mars Argo",
+    url: "https://files.catbox.moe/47n050.mp3",
+    portada: "https://i.postimg.cc/JzZ40pr9/ad26202c265fccc74e5a5b4a754d7190.jpg"
+  },
+  {
+    titulo: "Leni (Crystal Castles vs GoodBooks)",
+    artist: "Crystal Castles",
+    url: "https://files.catbox.moe/1kldwc.mp3",
+    portada: "https://i.postimg.cc/cJTWtjV9/7ab9e7f9ce15395e67d24d6721c8c97a.jpg"
+  },
+  {
+    titulo: "4 Morant",
+    artist: "—",
+    url: "https://files.catbox.moe/vs9wbu.mp3",
+    portada: "https://i.postimg.cc/prjXjCQh/66cb84ed609c98fb54228174c482a4fe.jpg"
+  },
+  {
+    titulo: "Oblivion",
+    artist: "Grimes",
+    url: "https://files.catbox.moe/f5g1qa.mp3",
+    portada: "https://i.postimg.cc/Y9GpcRPM/fba5d91ad47954e008ac2cbfac6eb43d.jpg"
+  }
 ];
 
-const PLAY_SVG  = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3l14 9-14 9V3z"/></svg>';
-const PAUSE_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h4v18H5V3zm10 0h4v18h-4V3z"/></svg>';
+const PLAY_SVG = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.2 5.28a1.2 1.2 0 0 1 1.85-1.01l10.22 6.72a1.2 1.2 0 0 1 0 2.02L10.05 19.73A1.2 1.2 0 0 1 8.2 18.72V5.28z"/></svg>';
+const PAUSE_SVG = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6.5" y="5" width="4" height="14" rx="1.5"/><rect x="13.5" y="5" width="4" height="14" rx="1.5"/></svg>';
+const VOL_LOW_SVG = '<path d="M5.5 9.25H3.2A1.7 1.7 0 0 0 1.5 10.95v2.1a1.7 1.7 0 0 0 1.7 1.7h2.3l4.38 3.65a1 1 0 0 0 1.62-.78V6.38a1 1 0 0 0-1.62-.78L5.5 9.25zm9.68-.68a.9.9 0 0 0-1.27 1.27 3.1 3.1 0 0 1 0 4.32.9.9 0 1 0 1.27 1.27 4.9 4.9 0 0 0 0-6.86z"/>';
+const VOL_MUTE_SVG = '<path d="M5.5 9.25H3.2A1.7 1.7 0 0 0 1.5 10.95v2.1a1.7 1.7 0 0 0 1.7 1.7h2.3l4.38 3.65a1 1 0 0 0 1.62-.78V6.38a1 1 0 0 0-1.62-.78L5.5 9.25zm10.1 1.15a.85.85 0 0 0-1.2 1.2l1.4 1.4-1.4 1.4a.85.85 0 1 0 1.2 1.2l1.4-1.4 1.4 1.4a.85.85 0 1 0 1.2-1.2l-1.4-1.4 1.4-1.4a.85.85 0 1 0-1.2-1.2l-1.4 1.4-1.4-1.4z"/>';
+const NOTE_SVG = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>';
 
-let currentIdx = 0, shuffle = false, repeatOne = false;
+let currentIdx = 0;
+let shuffle = false;
+let repeatOne = false;
+let lastVolume = 70;
+let initialized = false;
+let dragging = false;
+let wantsPlayback = false;
+let useCors = true;
+
+let audioCtx = null;
+let analyser = null;
+let sourceNode = null;
+let freqData = null;
+let analyserReady = false;
+
 const audio = new Audio();
+audio.crossOrigin = "anonymous";
 audio.preload = "metadata";
-audio.volume  = 0.7;
+audio.volume = 0.7;
 
 const $ = id => document.getElementById(id);
-const coverEl=$('cover'), titleEl=$('title'), artistEl=$('artist'),
-      statusEl=$('status'), statusTxt=$('statusTxt'), playBtnEl=$('playBtn'),
-      eqEl=$('eq'), fillEl=$('fill'), bufEl=$('buf'), knobEl=$('knob'),
-      curEl=$('cur'), durEl=$('dur'), seekEl=$('seek'),
-      chipTrack=$('chipTrack'), chipState=$('chipState'), plEl=$('playlist');
+const playerCard = $('playerCard');
+const playerAmbient = $('playerAmbient');
+const coverImg = $('coverImg');
+const vinylImg = $('vinylImg');
+const titleEl = $('title');
+const artistEl = $('artist');
+const playBtn = $('playBtn');
+const shuffleBtn = $('shuffleBtn');
+const repeatBtn = $('repeatBtn');
+const seekEl = $('seek');
+const fillEl = $('fill');
+const bufEl = $('buf');
+const knobEl = $('knob');
+const curEl = $('cur');
+const durEl = $('dur');
+const volEl = $('vol');
+const muteBtn = $('muteBtn');
+const volIconLow = $('volIconLow');
+const plEl = $('playlist');
+const dynamicPill = $('dynamicPill');
+const pillImg = $('pillImg');
+const pillTitle = $('pillTitle');
+const pillSub = $('pillSub');
+const pillBars = document.querySelectorAll("#pillEq i");
 
-/* ---------- helpers ---------- */
 const fmt = s => {
-  if(!isFinite(s) || s < 0) return "0:00";
-  const m = Math.floor(s/60), r = Math.floor(s%60);
-  return m + ":" + String(r).padStart(2,"0");
+  if (!isFinite(s) || s < 0) return "0:00";
+  const m = Math.floor(s / 60);
+  const r = Math.floor(s % 60);
+  return m + ":" + String(r).padStart(2, "0");
 };
 
-/* ---------- playlist UI ---------- */
-function buildPlaylist(){
+/* ---------- WEB AUDIO REAL-TIME FREQUENCY ANALYSER ---------- */
+function ensureAudioContext() {
+  if (!useCors) return;
+  const AC = window.AudioContext || window.webkitAudioContext;
+  if (!AC) return;
+  try {
+    if (!audioCtx) audioCtx = new AC();
+    if (audioCtx.state === "suspended") audioCtx.resume().catch(() => {});
+  } catch (_) {}
+}
+
+function attachAnalyser() {
+  if (!useCors || analyserReady) return;
+  const AC = window.AudioContext || window.webkitAudioContext;
+  if (!AC) return;
+  try {
+    if (!audioCtx) audioCtx = new AC();
+    if (audioCtx.state === "suspended") audioCtx.resume().catch(() => {});
+    if (!sourceNode) {
+      sourceNode = audioCtx.createMediaElementSource(audio);
+      analyser = audioCtx.createAnalyser();
+      analyser.fftSize = 256;
+      analyser.smoothingTimeConstant = 0.72;
+      sourceNode.connect(analyser);
+      analyser.connect(audioCtx.destination);
+      freqData = new Uint8Array(analyser.frequencyBinCount);
+    }
+    analyserReady = true;
+  } catch (_) {
+    analyserReady = false;
+  }
+}
+
+function avgBand(start, end) {
+  let sum = 0;
+  const hi = Math.min(end, freqData.length);
+  for (let i = start; i < hi; i++) sum += freqData[i];
+  return sum / Math.max(1, hi - start) / 255;
+}
+
+let barsIdle = true;
+
+function resetBars() {
+  for (let i = 0; i < pillBars.length; i++) pillBars[i].style.height = "3px";
+  const activeEq = plEl.querySelectorAll(".pl-item.active .pl-eq i");
+  for (let i = 0; i < activeEq.length; i++) activeEq[i].style.height = "3px";
+  barsIdle = true;
+}
+
+function eqLoop() {
+  if (!audio.paused && analyserReady && analyser && freqData) {
+    barsIdle = false;
+    analyser.getByteFrequencyData(freqData);
+    const gains = [1.0, 1.12, 1.32, 1.55];
+    const bands = [
+      avgBand(0, 2),
+      avgBand(2, 6),
+      avgBand(6, 16),
+      avgBand(16, 36)
+    ];
+    for (let i = 0; i < pillBars.length; i++) {
+      const level = Math.min(1, Math.pow(bands[i] * gains[i], 0.8));
+      pillBars[i].style.height = (3 + Math.round(level * 11)) + "px";
+    }
+    const activeEq = plEl.querySelectorAll(".pl-item.active .pl-eq i");
+    for (let i = 0; i < activeEq.length; i++) {
+      const level = Math.min(1, Math.pow(bands[i] * gains[i], 0.8));
+      activeEq[i].style.height = (3 + Math.round(level * 9)) + "px";
+    }
+  } else if (!barsIdle) {
+    resetBars();
+  }
+  requestAnimationFrame(eqLoop);
+}
+
+/* Si un servidor rechaza CORS antes de conectar Web Audio, degrada sin silenciar audio */
+audio.addEventListener("error", () => {
+  if (useCors && !sourceNode) {
+    useCors = false;
+    analyserReady = false;
+    audio.removeAttribute("crossorigin");
+    audio.crossOrigin = null;
+    audio.src = playlist[currentIdx].url;
+    if (wantsPlayback) {
+      audio.play().catch(() => setStatus(false));
+    }
+  }
+});
+
+/* ---------- PLAYLIST & UI ---------- */
+function buildPlaylist() {
   plEl.innerHTML = "";
-  playlist.forEach((t,i) => {
-    const b = document.createElement("button");
-    b.className = "pl-item" + (i===currentIdx ? " active":"");
-    b.type = "button";
-    b.innerHTML = `<span class="pl-idx">${String(i+1).padStart(2,"0")}</span>
-                   <span class="pl-name">${t.titulo}</span>
-                   <span class="pl-dur" data-dur="${i}">--:--</span>`;
-    b.addEventListener("click", () => loadTrack(i, true));
-    plEl.appendChild(b);
+  playlist.forEach((t, i) => {
+    const item = document.createElement("button");
+    item.type = "button";
+    item.className = "pl-item" + (i === currentIdx ? " active" : "");
+    item.setAttribute("role", "listitem");
+
+    const artistLine = t.artist && t.artist !== "—" ? `<span class="pl-artist">${t.artist}</span>` : "";
+    item.innerHTML = `
+      <span class="pl-thumb">
+        ${NOTE_SVG}
+        <img src="${t.portada}" alt="" loading="lazy" onerror="this.style.opacity='0'">
+      </span>
+      <span class="pl-info">
+        <span class="pl-name">${t.titulo}</span>
+        ${artistLine}
+      </span>
+      <span class="pl-right">
+        <span class="pl-eq" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="pl-dur" data-dur="${i}"></span>
+      </span>
+    `;
+    item.addEventListener("click", () => loadTrack(i, true));
+    plEl.appendChild(item);
   });
 }
-function markActive(){
-  [...plEl.children].forEach((el,i)=>el.classList.toggle("active", i===currentIdx));
-  chipTrack.textContent = "trk " + String(currentIdx+1).padStart(2,"0");
+
+function markActive() {
+  [...plEl.children].forEach((el, i) => el.classList.toggle("active", i === currentIdx));
 }
 
-/* ---------- render ---------- */
-function renderPlayerState(track, isPlaying){
-  titleEl.classList.add('swapping');
-  artistEl.classList.add('swapping');
-  coverEl.style.opacity = '.25';
-  setTimeout(()=>{
-    titleEl.textContent  = track.titulo;
-    artistEl.textContent = track.artist || "— — —";
-    coverEl.style.backgroundImage = `url('${track.portada}')`;
-    titleEl.classList.remove('swapping');
-    artistEl.classList.remove('swapping');
-    coverEl.style.opacity = '1';
-  }, 190);
-  setStatus(isPlaying);
-}
-function setStatus(playing){
-  statusEl.classList.toggle('playing', !!playing);
-  statusTxt.textContent = playing ? "reproduciendo" : "pausado";
-  chipState.textContent = playing ? "play" : "stop";
-  chipState.classList.toggle('live', !!playing);
-  eqEl.classList.toggle('paused', !playing);
-  playBtnEl.innerHTML = playing ? PAUSE_SVG : PLAY_SVG;
-  playBtnEl.setAttribute('aria-label', playing ? "Pausar" : "Reproducir");
+function syncPill(track, playing) {
+  dynamicPill.classList.toggle("is-playing", !!playing);
+  if (playing) {
+    pillTitle.textContent = track.titulo;
+    pillSub.textContent = track.artist && track.artist !== "—" ? track.artist : "Reproduciendo";
+    if (pillImg.getAttribute("src") !== track.portada) {
+      pillImg.style.display = "";
+      pillImg.src = track.portada;
+    }
+  }
 }
 
-/* ---------- cargar pista ---------- */
-function loadTrack(idx, startPlaying=false){
-  currentIdx = ((idx % playlist.length) + playlist.length) % playlist.length;
+function setStatus(playing) {
+  playerCard.classList.toggle("is-playing", !!playing);
+  playBtn.innerHTML = playing ? PAUSE_SVG : PLAY_SVG;
+  playBtn.setAttribute("aria-label", playing ? "Pausar" : "Reproducir");
+  syncPill(playlist[currentIdx], playing);
+  if (!playing) resetBars();
+}
+
+function applyTrackVisuals(track) {
+  titleEl.textContent = track.titulo;
+  artistEl.textContent = track.artist || "—";
+  if (coverImg.getAttribute("src") === track.portada) {
+    if (coverImg.complete && coverImg.naturalWidth > 0) {
+      coverImg.style.opacity = "1";
+    }
+  } else {
+    coverImg.style.opacity = "0";
+    coverImg.src = track.portada;
+  }
+  if (vinylImg.getAttribute("src") !== track.portada) {
+    vinylImg.style.display = "";
+    vinylImg.src = track.portada;
+  }
+  playerAmbient.style.backgroundImage = `url('${track.portada}')`;
+}
+
+function playCurrentAudio() {
+  wantsPlayback = true;
+  ensureAudioContext();
+  audio.play().then(() => setStatus(true)).catch(() => setStatus(false));
+}
+
+function loadTrack(idx, startPlaying = false) {
+  const nextIdx = ((idx % playlist.length) + playlist.length) % playlist.length;
+
+  if (initialized && nextIdx === currentIdx) {
+    if (startPlaying && audio.paused) {
+      playCurrentAudio();
+    }
+    return;
+  }
+
+  currentIdx = nextIdx;
   const track = playlist[currentIdx];
+
+  wantsPlayback = !!startPlaying;
   audio.src = track.url;
+  fillEl.style.width = "0%";
+  knobEl.style.left = "0%";
+  bufEl.style.width = "0%";
+  curEl.textContent = "0:00";
+  durEl.textContent = "0:00";
+  seekEl.setAttribute("aria-valuenow", "0");
   markActive();
-  if(titleEl.textContent === "cargando..."){
-    titleEl.textContent  = track.titulo;
-    artistEl.textContent = track.artist || "— — —";
-    coverEl.style.backgroundImage = `url('${track.portada}')`;
+
+  if (!initialized) {
+    initialized = true;
+    applyTrackVisuals(track);
     setStatus(false);
   } else {
-    renderPlayerState(track, startPlaying);
+    titleEl.classList.add("is-swapping");
+    artistEl.classList.add("is-swapping");
+    coverImg.style.opacity = "0";
+    setTimeout(() => {
+      applyTrackVisuals(track);
+      titleEl.classList.remove("is-swapping");
+      artistEl.classList.remove("is-swapping");
+    }, 140);
+    setStatus(startPlaying);
   }
-  if(startPlaying){
-    setTimeout(()=>{ audio.play().catch(()=> setStatus(false)); }, 210);
+
+  if (startPlaying) {
+    playCurrentAudio();
   }
 }
 
-/* ---------- controles ---------- */
-function togglePlay(){
-  if(audio.paused){
-    audio.play().then(()=>setStatus(true)).catch(()=>setStatus(false));
+function togglePlay() {
+  if (audio.paused) {
+    playCurrentAudio();
   } else {
-    audio.pause(); setStatus(false);
+    wantsPlayback = false;
+    audio.pause();
+    setStatus(false);
   }
 }
-function pickNext(dir){
-  if(shuffle && playlist.length > 1){
-    let n; do { n = Math.floor(Math.random()*playlist.length); } while(n === currentIdx);
+
+function pickNext(dir) {
+  if (shuffle && playlist.length > 1) {
+    let n;
+    do {
+      n = Math.floor(Math.random() * playlist.length);
+    } while (n === currentIdx);
     return n;
   }
   return (currentIdx + dir + playlist.length) % playlist.length;
 }
+
 const nextTrack = () => loadTrack(pickNext(1), !audio.paused);
 const prevTrack = () => {
-  if(audio.currentTime > 3){ audio.currentTime = 0; return; }
+  if (audio.currentTime > 3) {
+    audio.currentTime = 0;
+    return;
+  }
   loadTrack(pickNext(-1), !audio.paused);
 };
 
-playBtnEl.addEventListener('click', togglePlay);
-$('nextBtn').addEventListener('click', nextTrack);
-$('prevBtn').addEventListener('click', prevTrack);
-$('shuffleBtn').addEventListener('click', e => {
-  shuffle = !shuffle; e.currentTarget.classList.toggle('on', shuffle);
-});
-$('repeatBtn').addEventListener('click', e => {
-  repeatOne = !repeatOne; e.currentTarget.classList.toggle('on', repeatOne);
+dynamicPill.addEventListener("click", togglePlay);
+playBtn.addEventListener("click", togglePlay);
+$('nextBtn').addEventListener("click", nextTrack);
+$('prevBtn').addEventListener("click", prevTrack);
+
+shuffleBtn.addEventListener("click", () => {
+  shuffle = !shuffle;
+  shuffleBtn.classList.toggle("is-on", shuffle);
+  shuffleBtn.setAttribute("aria-pressed", String(shuffle));
 });
 
-audio.addEventListener('ended', () => {
-  if(repeatOne){ audio.currentTime = 0; audio.play(); }
-  else { loadTrack(pickNext(1), true); }
+repeatBtn.addEventListener("click", () => {
+  repeatOne = !repeatOne;
+  repeatBtn.classList.toggle("is-on", repeatOne);
+  repeatBtn.setAttribute("aria-pressed", String(repeatOne));
 });
 
-/* ---------- seek / times ---------- */
-audio.addEventListener('loadedmetadata', ()=>{
-  durEl.textContent = fmt(audio.duration);
+audio.addEventListener("ended", () => {
+  if (repeatOne) {
+    audio.currentTime = 0;
+    playCurrentAudio();
+  } else {
+    loadTrack(pickNext(1), true);
+  }
+});
+
+audio.addEventListener("play", () => {
+  ensureAudioContext();
+  setStatus(true);
+});
+
+audio.addEventListener("playing", () => {
+  attachAnalyser();
+  setStatus(true);
+});
+
+audio.addEventListener("pause", () => setStatus(false));
+
+audio.addEventListener("loadedmetadata", () => {
+  const formatted = fmt(audio.duration);
+  durEl.textContent = formatted;
   const d = plEl.querySelector(`[data-dur="${currentIdx}"]`);
-  if(d) d.textContent = fmt(audio.duration);
+  if (d) d.textContent = formatted;
 });
-audio.addEventListener('timeupdate', ()=>{
-  const p = audio.duration ? (audio.currentTime/audio.duration)*100 : 0;
-  fillEl.style.width = p + "%";
-  knobEl.style.left  = p + "%";
-  curEl.textContent  = fmt(audio.currentTime);
-  seekEl.setAttribute('aria-valuenow', Math.round(p));
+
+audio.addEventListener("timeupdate", () => {
+  const pct = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
+  fillEl.style.width = pct + "%";
+  knobEl.style.left = pct + "%";
+  curEl.textContent = fmt(audio.currentTime);
+  seekEl.setAttribute("aria-valuenow", String(Math.round(pct)));
 });
-audio.addEventListener('progress', ()=>{
-  try{
-    if(audio.buffered.length && audio.duration){
-      bufEl.style.width = (audio.buffered.end(audio.buffered.length-1)/audio.duration*100) + "%";
+
+audio.addEventListener("progress", () => {
+  try {
+    if (audio.buffered.length && audio.duration) {
+      const pct = (audio.buffered.end(audio.buffered.length - 1) / audio.duration) * 100;
+      bufEl.style.width = pct + "%";
     }
-  }catch(e){}
+  } catch (_) {}
 });
-function seekFromEvent(clientX){
-  const r = seekEl.getBoundingClientRect();
-  const p = Math.min(1, Math.max(0, (clientX - r.left)/r.width));
-  if(audio.duration){
-    audio.currentTime = p * audio.duration;
-    fillEl.style.width = (p*100)+"%"; knobEl.style.left = (p*100)+"%";
+
+function seekFromClientX(clientX) {
+  const rect = seekEl.getBoundingClientRect();
+  const ratio = rect.width ? Math.min(1, Math.max(0, (clientX - rect.left) / rect.width)) : 0;
+  if (audio.duration) {
+    audio.currentTime = ratio * audio.duration;
   }
+  const pct = ratio * 100 + "%";
+  fillEl.style.width = pct;
+  knobEl.style.left = pct;
 }
-let dragging = false;
-seekEl.addEventListener('pointerdown', e => { dragging = true; seekEl.setPointerCapture(e.pointerId); seekFromEvent(e.clientX); });
-seekEl.addEventListener('pointermove', e => { if(dragging) seekFromEvent(e.clientX); });
-seekEl.addEventListener('pointerup',   () => dragging = false);
-seekEl.addEventListener('keydown', e => {
-  if(!audio.duration) return;
-  if(e.key === "ArrowRight"){ audio.currentTime = Math.min(audio.duration, audio.currentTime+5); e.preventDefault(); }
-  if(e.key === "ArrowLeft"){  audio.currentTime = Math.max(0, audio.currentTime-5); e.preventDefault(); }
-  if(e.key === " " || e.key === "Enter"){ togglePlay(); e.preventDefault(); }
+
+seekEl.addEventListener("pointerdown", e => {
+  dragging = true;
+  seekEl.classList.add("dragging");
+  seekEl.setPointerCapture(e.pointerId);
+  seekFromClientX(e.clientX);
 });
 
-/* atajos de teclado globales */
-document.addEventListener('keydown', e => {
-  if(e.target.tagName === "INPUT") return;
-  if(e.code === "Space"){ togglePlay(); e.preventDefault(); }
-  if(e.code === "ArrowRight" && e.shiftKey) nextTrack();
-  if(e.code === "ArrowLeft"  && e.shiftKey) prevTrack();
+seekEl.addEventListener("pointermove", e => {
+  if (dragging) seekFromClientX(e.clientX);
 });
 
-/* ---------- volumen ---------- */
-const volEl = $('vol'), volVal = $('volVal');
-volEl.addEventListener('input', () => {
-  audio.volume = volEl.value/100;
-  volVal.textContent = volEl.value;
+seekEl.addEventListener("pointerup", () => {
+  dragging = false;
+  seekEl.classList.remove("dragging");
 });
 
-/* ---------- ecualizador visual (Web Audio) ---------- */
-const BARS = eqEl.children.length;
-let analyser, dataArr, audioReady = false;
-function initAudioGraph(){
-  if(audioReady || !window.AudioContext && !window.webkitAudioContext) return;
-  try{
-    const AC = window.AudioContext || window.webkitAudioContext;
-    const ctx = new AC();
-    const src = ctx.createMediaElementSource(audio);
-    analyser  = ctx.createAnalyser();
-    analyser.fftSize = 64;
-    analyser.smoothingTimeConstant = .72;
-    src.connect(analyser);
-    analyser.connect(ctx.destination);
-    dataArr = new Uint8Array(analyser.frequencyBinCount);
-    audioReady = true;
-    if(ctx.state === "suspended") ctx.resume();
-  }catch(e){ audioReady = false; }
-}
-function eqLoop(){
-  if(analyser && !audio.paused){
-    analyser.getByteFrequencyData(dataArr);
-    const step = Math.floor(dataArr.length / BARS) || 1;
-    for(let i=0;i<BARS;i++){
-      const v = dataArr[i*step] / 255;
-      eqEl.children[i].style.height = (3 + v*18) + "px";
-    }
+seekEl.addEventListener("pointercancel", () => {
+  dragging = false;
+  seekEl.classList.remove("dragging");
+});
+
+seekEl.addEventListener("keydown", e => {
+  if (!audio.duration) return;
+  if (e.key === "ArrowRight") {
+    audio.currentTime = Math.min(audio.duration, audio.currentTime + 5);
+    e.preventDefault();
+  } else if (e.key === "ArrowLeft") {
+    audio.currentTime = Math.max(0, audio.currentTime - 5);
+    e.preventDefault();
+  } else if (e.key === " " || e.key === "Enter") {
+    togglePlay();
+    e.preventDefault();
   }
-  requestAnimationFrame(eqLoop);
-}
-audio.addEventListener('play', () => { initAudioGraph(); setStatus(true); });
-audio.addEventListener('pause',() => setStatus(false));
-requestAnimationFrame(eqLoop);
-
-/* ---------- glitch aleatorio del título ---------- */
-const baseText = "alejoows";
-const glitchChars = "▓▒░#@%&$?!/\\<>*+01";
-setInterval(()=>{
-  const h1 = document.querySelector('h1');
-  if(Math.random() > .82){
-    let s = baseText.split("");
-    const n = 1 + Math.floor(Math.random()*3);
-    for(let i=0;i<n;i++){
-      const p = Math.floor(Math.random()*s.length);
-      s[p] = glitchChars[Math.floor(Math.random()*glitchChars.length)];
-    }
-    h1.childNodes[0].nodeValue = s.join("");
-    setTimeout(()=>{ h1.childNodes[0].nodeValue = baseText; }, 90 + Math.random()*110);
-  }
-}, 900);
-
-/* ---------- boot ---------- */
-const bootMsgs = ["iniciando nucleo...","cargando texturas...","conectando audio...","listo."];
-let bi = 0;
-const bootTxt = $('bootTxt');
-const bootInt = setInterval(()=>{
-  bi++;
-  if(bi < bootMsgs.length) bootTxt.textContent = bootMsgs[bi];
-}, 300);
-window.addEventListener('load', ()=>{
-  setTimeout(()=>{
-    clearInterval(bootInt);
-    $('boot').classList.add('hide');
-    setTimeout(()=> $('boot').remove(), 600);
-  }, 1150);
 });
-setTimeout(()=>{ $('boot') && $('boot').classList.add('hide'); }, 3000); /* red lenta */
 
-/* ---------- init ---------- */
+document.addEventListener("keydown", e => {
+  const tag = e.target && e.target.tagName;
+  if (tag === "INPUT" || tag === "BUTTON" || tag === "A") return;
+  if (e.code === "Space" && e.target !== seekEl) {
+    togglePlay();
+    e.preventDefault();
+  } else if (e.code === "ArrowRight" && e.shiftKey) {
+    nextTrack();
+  } else if (e.code === "ArrowLeft" && e.shiftKey) {
+    prevTrack();
+  }
+});
+
+function updateVolumeUI(val) {
+  const numeric = Number(val);
+  audio.volume = numeric / 100;
+  volEl.value = String(numeric);
+  volEl.style.setProperty("--vol-pct", numeric + "%");
+  volIconLow.innerHTML = numeric === 0 ? VOL_MUTE_SVG : VOL_LOW_SVG;
+  muteBtn.setAttribute("aria-label", numeric === 0 ? "Activar audio" : "Silenciar");
+}
+
+volEl.addEventListener("input", () => {
+  const v = Number(volEl.value);
+  if (v > 0) lastVolume = v;
+  updateVolumeUI(v);
+});
+
+muteBtn.addEventListener("click", () => {
+  if (Number(volEl.value) === 0) {
+    updateVolumeUI(lastVolume || 70);
+  } else {
+    lastVolume = Number(volEl.value);
+    updateVolumeUI(0);
+  }
+});
+
+updateVolumeUI(70);
 buildPlaylist();
 loadTrack(0, false);
+requestAnimationFrame(eqLoop);
 </script>
 </body>
 </html>
